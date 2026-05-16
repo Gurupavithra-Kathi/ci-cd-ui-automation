@@ -1,0 +1,17 @@
+pipeline{
+agent any;
+environment{
+
+}
+options{
+
+}
+parameters{
+
+}
+stages{
+stage("Checkout code"){
+
+}
+}
+}
