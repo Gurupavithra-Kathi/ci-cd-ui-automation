@@ -11,8 +11,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main',
-                git 'https://github.com/Gurupavithra-Kathi/ci-cd-ui-automation.git'
+               git branch: 'main', url: 'https://github.com/Gurupavithra-Kathi/ci-cd-ui-automation.git'
             }
         }
 
