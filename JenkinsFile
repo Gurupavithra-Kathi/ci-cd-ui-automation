@@ -1,17 +1,45 @@
-pipeline{
-agent any;
-environment{
+pipeline {
 
-}
-options{
+    agent any
 
-}
-parameters{
+    tools {
+        maven 'Maven'
+        jdk 'Java'
+    }
 
-}
-stages{
-stage("Checkout code"){
+    stages {
 
-}
-}
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/Gurupavithra-Kathi/ci-cd-ui-automation.git'
+            }
+        }
+
+        stage('Build & Run Tests') {
+            steps {
+                bat 'mvn clean test'
+            }
+        }
+
+        stage('Generate Reports') {
+            steps {
+                bat 'mvn surefire-report:report'
+            }
+        }
+    }
+
+    post {
+
+        always {
+            archiveArtifacts artifacts: 'target/surefire-reports/**'
+        }
+
+        success {
+            echo 'Pipeline Executed Successfully'
+        }
+
+        failure {
+            echo 'Pipeline Failed'
+        }
+    }
 }
